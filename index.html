@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Виберіть категорію</h1>
+    <div id="categories">
+        <!-- Категорії будуть додані тут -->
+    </div>
+    <script>
+        const categories = ['Автосервіс', 'Краса та здоров\'я', 'Будівництво', 'Домашні послуги', 'ІТ та комп\'ютери', 'Медичні послуги', 'Рекламні послуги', 'Туризм та подорожі'];
+        
+        const categoriesDiv = document.getElementById('categories');
+        
+        categories.forEach(category => {
+            const button = document.createElement('div');
+            button.className = 'button';
+            button.innerText = category;
+            button.onclick = () => {
+                // Відправка даних у бот
+                Telegram.WebApp.sendData(category);
+            };
+            categoriesDiv.appendChild(button);
+        });
+        
+        // Ініціалізація Web App
+        Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
