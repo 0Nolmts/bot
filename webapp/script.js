@@ -1,24 +1,36 @@
-const BOT_TOKEN = '7326028582:AAHQthM2_Wz8YCIyvQKm25ChG6wRAa-1Wrk';
-const CHAT_ID = '1153847102';  // Заміни на справжній chat ID
+document.addEventListener('DOMContentLoaded', function () {
+    const categories = [
+        { name: 'Автосервіс', subcategories: ['Ремонт', 'Мийка', 'Оренда', 'Автопідбір'] },
+        { name: 'Краса та здоров\'я', subcategories: ['Нарощення вій', 'Нарощення волосся', 'Кератин', 'Тату', 'Ламінування брів', 'Депіляція'] },
+        { name: 'Будівництво', subcategories: ['Проектування будівель', 'Дизайн інтер\'єру'] },
+        { name: 'Домашні послуги', subcategories: ['Прибирання', 'Вигул собак', 'Догляд за домашніми улюбленцями'] },
+        { name: 'IT та комп\'ютери', subcategories: ['Ремонт комп\'ютерів', 'Налаштування мережі'] },
+        { name: 'Медичні послуги', subcategories: ['Консультації лікарів', 'Стоматологія'] },
+        { name: 'Рекламні послуги', subcategories: ['Рекламні послуги та SMM'] }
+    ];
 
-function chooseCategory(category) {
-    alert(`Ви обрали категорію: ${category}`);
+    const categoriesContainer = document.getElementById('categories');
+    const subcategoriesContainer = document.getElementById('subcategories');
 
-    fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: `Користувач обрав категорію: ${category}`
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
+    categories.forEach(category => {
+        const button = document.createElement('button');
+        button.className = 'btn btn-primary category-btn';
+        button.textContent = category.name;
+        button.onclick = () => loadSubcategories(category.subcategories);
+        categoriesContainer.appendChild(button);
     });
-}
+
+    function loadSubcategories(subcategories) {
+        categoriesContainer.classList.add('hidden');
+        subcategoriesContainer.innerHTML = '';
+        subcategoriesContainer.classList.remove('hidden');
+
+        subcategories.forEach(subcategory => {
+            const button = document.createElement('button');
+            button.className = 'btn btn-secondary subcategory-btn';
+            button.textContent = subcategory;
+            button.onclick = () => alert('Ви вибрали підкатегорію: ' + subcategory);
+            subcategoriesContainer.appendChild(button);
+        });
+    }
+});
