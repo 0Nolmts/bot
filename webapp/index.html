@@ -1,49 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Web App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #007BFF;
-            color: white;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
+    <title>czbot</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <h1>Виберіть категорію</h1>
-    <div id="categories">
-        <!-- Категорії будуть додані тут -->
+    <div class="container">
+        <div class="text-center my-5">
+            <h1>Виберіть категорію</h1>
+        </div>
+        <div id="categories" class="d-flex flex-wrap justify-content-center">
+            <!-- Категорії будуть завантажені тут за допомогою JavaScript -->
+        </div>
+        <div id="subcategories" class="d-flex flex-wrap justify-content-center hidden">
+            <!-- Підкатегорії будуть завантажені тут за допомогою JavaScript -->
+        </div>
     </div>
-    <script>
-        const categories = ['Автосервіс', 'Краса та здоров\'я', 'Будівництво', 'Домашні послуги', 'ІТ та комп\'ютери', 'Медичні послуги', 'Рекламні послуги', 'Туризм та подорожі'];
-        
-        const categoriesDiv = document.getElementById('categories');
-        
-        categories.forEach(category => {
-            const button = document.createElement('div');
-            button.className = 'button';
-            button.innerText = category;
-            button.onclick = () => {
-                // Відправка даних у бот
-                Telegram.WebApp.sendData(category);
-            };
-            categoriesDiv.appendChild(button);
-        });
-        
-        // Ініціалізація Web App
-        Telegram.WebApp.ready();
-    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
