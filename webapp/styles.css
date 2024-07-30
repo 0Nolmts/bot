@@ -1,0 +1,6 @@
+.hidden {
+    display: none;
+}
+.category-btn, .subcategory-btn {
+    margin: 10px;
+}
