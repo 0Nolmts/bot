@@ -1,23 +1,24 @@
-function chooseCategory(category) {
-    // Simulate sending a message to the bot with the chosen category
-    alert(`Ви обрали категорію: ${category}`);
-
-    // Here you can add code to interact with the bot API, for example:
-    fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            chat_id: CHAT_ID,
-            text: `Користувач обрав категорію: ${category}`
-        })
-    })
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-    });
-}
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>czbot</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Виберіть категорію</h1>
+        <div class="buttons">
+            <button onclick="chooseCategory('Автосервіс')">Автосервіс</button>
+            <button onclick="chooseCategory('Краса та здоров\'я')">Краса та здоров'я</button>
+            <button onclick="chooseCategory('Будівництво')">Будівництво</button>
+            <button onclick="chooseCategory('Домашні послуги')">Домашні послуги</button>
+            <button onclick="chooseCategory('IT та комп\'ютери')">IT та комп'ютери</button>
+            <button onclick="chooseCategory('Медичні послуги')">Медичні послуги</button>
+            <button onclick="chooseCategory('Рекламні послуги')">Рекламні послуги</button>
+        </div>
+    </div>
+</body>
+</html>
