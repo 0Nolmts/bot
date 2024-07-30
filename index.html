@@ -1,49 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Telegram Web App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px;
-            background-color: #007BFF;
-            color: white;
-            text-align: center;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-    </style>
-</head>
-<body>
-    <h1>Виберіть категорію</h1>
-    <div id="categories">
-        <!-- Категорії будуть додані тут -->
-    </div>
-    <script>
-        const categories = ['Автосервіс', 'Краса та здоров\'я', 'Будівництво', 'Домашні послуги', 'ІТ та комп\'ютери', 'Медичні послуги', 'Рекламні послуги', 'Туризм та подорожі'];
-        
-        const categoriesDiv = document.getElementById('categories');
-        
-        categories.forEach(category => {
-            const button = document.createElement('div');
-            button.className = 'button';
-            button.innerText = category;
-            button.onclick = () => {
-                // Відправка даних у бот
-                Telegram.WebApp.sendData(category);
-            };
-            categoriesDiv.appendChild(button);
-        });
-        
-        // Ініціалізація Web App
-        Telegram.WebApp.ready();
-    </script>
-</body>
-</html>
+function chooseCategory(category) {
+    // Simulate sending a message to the bot with the chosen category
+    alert(`Ви обрали категорію: ${category}`);
+
+    // Here you can add code to interact with the bot API, for example:
+    fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            chat_id: CHAT_ID,
+            text: `Користувач обрав категорію: ${category}`
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+}
